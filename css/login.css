@@ -1,0 +1,52 @@
+.bg-light-gray {
+    background-color: #f4f4f4;
+}
+
+.gold-text {
+    /*color: #D4AF37;*/
+   /* color: #000000;*/
+   color:  #c5a12f;
+    font-family: 'Raleway', sans-serif; 
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+
+.btn-gold {
+    background-color:  #c5a12f;
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-gold:hover {
+    background-color: #D4AF37;
+    color: #1a1a1a;
+}
+
+.custom-input:focus {
+    border-color: #1a1a1a;
+    
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.text-ad {
+    color: #1a1a1a;
+    font-family: 'Raleway', sans-serif; 
+    font-size: 17px;
+}
+
+
+.btn-outline-dark {
+    border-color: #dad3d3;
+    transition: 0.3s;
+    font-size: 13px;
+}
+
+
+hr {
+    opacity: 0.1;
+}
