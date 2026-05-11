@@ -22,7 +22,14 @@ document.querySelector('#google-login').addEventListener('click', () => {
             alert(`Bem-vindo, ${result.user.displayName}!`);
         })
         .catch((error) => {
-            // O que acontece se o usuário fechar a janela ou der erro
-            console.error("Erro ao logar com o Google:", error.code);
-        });
+    // O erro 'auth/operation-not-allowed' confirma que o passo 2 acima não foi feito
+    if (error.code === 'auth/operation-not-allowed') {
+        alert("Você precisa ativar o Google no Console do Firebase!");
+    } else if (error.code === 'auth/unauthorized-domain') {
+        alert("Este domínio não está autorizado no Firebase.");
+    } else {
+        console.error("Erro completo:", error);
+        alert("Erro: " + error.message);
+    }
+});
 });
