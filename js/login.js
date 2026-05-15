@@ -5,7 +5,7 @@ import {
     signInWithPopup, 
     GoogleAuthProvider, 
     signInWithEmailAndPassword 
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
 // Importamos a configuração que vem do outro arquivo
 import { auth } from './firebase-config.js';
