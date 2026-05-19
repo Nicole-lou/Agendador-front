@@ -3,56 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login </title>
+    <title>Login Branch</title>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
      <link rel="stylesheet" href="css/login.css">
      <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body class="bg-light-gray">
+<body>
+
+  <!-- Container centralizado -->
+   <div id="login" class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card p-4" style="max-width: 440px; width: 100%; margin: auto;">
+  <div class="card-body p-5">
+  <div class="text-center mb-4">
+  <h2 class="gold-text fw-bold">
+    <i class="fas fa-calendar-alt me-2"></i>Agenda Dourada           
+  </h2>
+  <p class="text-muted">Facilite sua vida com o nossa Agenda Dourada</p>
+
+  </div> <!-- fim text-center -->
+
+    <!-- navegação abas -->
+  <div class="d-flex justify-content-center mb-4">
+    <button class="btn-abas me-2 active" id="login-tab">Login</button>
+    <button class="btn-abas me-2" id="cadastro-tab">Cadastre-se</button>
+   </div>
 
    
-    <main class="container d-flex align-items-center justify-content-center vh-100">
-    <div class="row w-100 justify-content-center">
-    <div class="col-12 col-md-6 col-lg-4">
-    <div class="card shadow-lg border-1-rounded">
-    <div class="card-body p-5">
-    <h2 class="text-center mb-4 gold-text">Seja bem-vindo!
-        Ao nosso espaço
-    </h2>
-
     
-    <ul class="nav nav-tabs mb-4 justify-content-center" id="authTabs" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active text-dark fw-bold" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-pane" type="button" role="tab">Entrar</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link text-muted" id="cadastro-tab" data-bs-toggle="tab" data-bs-target="#cadastro-pane" type="button" role="tab">Cadastrar</button>
-    </li>
-  </ul>
-  
-  
-
-    <form id="login-form">
-    <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control custom-input" id="email" required placeholder="Seu@email.com" autocomplete="username">
-    </div>
-
-    <div class="mb-3">
-    <label for="password" class="form-label">Senha</label>
-    <input type="password" class="form-control custom-input" id="password" required placeholder="*******">
-    </div>
-
-    <button type="submit" class="btn btn-gold w-100 mt-3 fw-bold">Entrar</button>
-    </form> <!-- Form end here -->
-
-    <div class="d-flex align-items-center my-4">
-    <hr class="flex-grow-1">
-    <span class="mx-2 text-muted small">ou</span>
-    <hr class="flex-grow-1">
-    </div>
 
    <button type="button" id="google-login" class="btn  w-100 d-flex align-items-center justify-content-center gap-2 py-2">
    <img src="img/google-logo.png" alt="Google Logo" width="40">
@@ -60,16 +39,9 @@
    </button>
 
     
-    </div>
-    </div>
-    </div>
-    </div>
-    </main> <!-- Main content end here -->
-    
-
-
-
-
+</div> <!-- fim card-body -->
+</div> <!-- fim card -->
+</div> <!-- fim div login-->
 
 
 
