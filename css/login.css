@@ -1,10 +1,37 @@
-.bg-light-gray {
+:root {    
+--gold: #D4AF37; 
+--gold-dark: #B8972E; 
+}
+.btn-gold { background-color: var(--gold);
+     color: #000; 
+     font-weight: 600; }
+
+.btn-gold:hover { 
+    background-color: var(--gold-dark);
+ }
+
+.gold-text { 
+    color: var(--gold); 
+}
+
+.card { 
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15); 
+}
+
+body { 
+background-color: #f8f9fa; 
+font-family: 'Raleway', sans-serif; 
+}
+
+
+
+/*.bg-light-gray {
     background-color: #f4f4f4;
 }
 
 .gold-text {
     /*color: #D4AF37;*/
-   /* color: #000000;*/
+   /* color: #000000;
    color:  #c5a12f;
     font-family: 'Raleway', sans-serif; 
     text-transform: uppercase;
@@ -49,4 +76,6 @@
 
 hr {
     opacity: 0.1;
-}
+} 
+
+*/

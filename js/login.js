@@ -22,14 +22,23 @@ document.querySelector('#google-login').addEventListener('click', () => {
             alert(`Bem-vindo, ${result.user.displayName}!`);
         })
         .catch((error) => {
-    // O erro 'auth/operation-not-allowed' confirma que o passo 2 acima não foi feito
-    if (error.code === 'auth/operation-not-allowed') {
-        alert("Você precisa ativar o Google no Console do Firebase!");
-    } else if (error.code === 'auth/unauthorized-domain') {
-        alert("Este domínio não está autorizado no Firebase.");
-    } else {
-        console.error("Erro completo:", error);
-        alert("Erro: " + error.message);
+    // Manter isso para  conseguir debugar no F12 se a internet cair ou o Google falhar
+    console.error("Erro na autenticação com Google:", error);
+
+    // Se o usuário simplesmente fechou a janelinha do Google sem escolher um e-mail
+    if (error.code === 'auth/popup-closed-by-user') {
+        return; // Não faz nada, o usuário só desistiu de logar
     }
+
+    // Para qualquer outro erro real (ex: queda de conexão)
+    alert("Não foi possível conectar com o Google. Tente novamente em instantes.");
 });
 });
+
+createUserWithEmailAndPassword(auth, email, senha)
+    .then((userCredential) => {
+        alert("Conta criada com sucesso! Bem-vinda!");
+    })
+    .catch((error) => {
+        console.error("Erro ao cadastrar:", error.code);
+    });
