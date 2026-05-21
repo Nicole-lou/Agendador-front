@@ -1,6 +1,7 @@
 :root {    
 --gold: #D4AF37; 
 --gold-dark: #B8972E; 
+
 }
 .btn-gold { background-color: var(--gold);
      color: #000; 
@@ -18,64 +19,48 @@
     box-shadow: 0 9px 30px rgba(212, 175, 55, 0.15); 
 }
 
+
+
+/* Seu estilo base (Botão inativo / secundário) */
+.btn-abas, .btn-entrar, .btn-cadastro {
+    background-color: transparent;
+    border: 2px solid var(--gold-dark); 
+    border-radius: 5px;
+    color: var(--gold-dark); 
+    font-weight: 600;
+    transition: 0.3s;
+    font-size: 18px;
+    padding: 6px 10px; 
+}
+
+/* O Bootstrap vai colocar essa classe automaticamente no botão clicado */
+.btn-abas.active {
+    background-color: var(--gold-dark) !important; /* Ganha o fundo dourado cheio */
+    color: #000 !important; /* Texto preto para dar contraste com o dourado */
+}
+
+.btn-abas:hover, .btn-entrar:hover, .btn-cadastro:hover {
+    background-color: var(--gold-dark);
+    color: #000;
+    cursor: pointer;
+}
+
+.btn-google {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: #000;
+    font-weight: 600;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
 body { 
 background-color: #f8f9fa; 
 font-family: 'Raleway', sans-serif; 
+ 
 }
 
 
 
-/*.bg-light-gray {
-    background-color: #f4f4f4;
-}
 
-.gold-text {
-    /*color: #D4AF37;*/
-   /* color: #000000;
-   color:  #c5a12f;
-    font-family: 'Raleway', sans-serif; 
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 20px;
-}
-
-.btn-gold {
-    background-color:  #c5a12f;
-    color: white;
-    border: none;
-    transition: 0.3s;
-}
-
-.btn-gold:hover {
-    background-color: #D4AF37;
-    color: #1a1a1a;
-}
-
-.custom-input:focus {
-    border-color: #1a1a1a;
-    
-}
-
-.card {
-    border-radius: 10px;
-}
-
-.text-ad {
-    color: #1a1a1a;
-    font-family: 'Raleway', sans-serif; 
-    font-size: 17px;
-}
-
-
-.btn-outline-dark {
-    border-color: #dad3d3;
-    transition: 0.3s;
-    font-size: 13px;
-}
-
-
-hr {
-    opacity: 0.1;
-} 
-
-*/

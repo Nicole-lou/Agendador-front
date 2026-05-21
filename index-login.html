@@ -25,18 +25,65 @@
   </div> <!-- fim text-center -->
 
     <!-- navegação abas -->
-  <div class="d-flex justify-content-center mb-4">
-    <button class="btn-abas me-2 active" id="login-tab">Login</button>
-    <button class="btn-abas me-2" id="cadastro-tab">Cadastre-se</button>
-   </div>
+  <div class="d-flex justify-content-center mb-4" role="tablist">
+    <button type="button" class="btn-abas me-2 active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-pane" role="tab">Login</button>
+    <button type="button" class="btn-abas me-2" id="cadastro-tab" data-bs-toggle="tab" data-bs-target="#cadastro-pane" role="tab">Cadastro</button>
+</div>
 
-   
+   <!-- Formulário de Login -->
+  <div class="tab-content" id="authTabsContent">
+
+    <div class="tab-pane fade show active" id="login-pane" role="tabpanel">
+   <div id="form-login">
+    <div class="mb-3">
+      <input type="email" class="form-control" id="email" placeholder="Email">
+    </div>
+    <div class="mb-3">
+      <input type="password" class="form-control" id="password" placeholder="Senha">
+    </div>
+    <button onclick="loginEmail()" class="btn-entrar w-100 py-2 mb-3">
+      Entrar
+    </button>
+   </div> <!-- fim form-login -->
+  
+
+   <div class="d-flex align-items-center my-4">
+        <hr class="flex-grow-1"><span class="mx-2 text-muted small">ou</span><hr class="flex-grow-1">
+      </div>
+      <button type="button" id="google-login" class="btn-google  w-100 d-flex align-items-center justify-content-center gap-2 py-2">
+        <img src="img/google-logo.png"  alt="Google Logo" width="40">
+        Continuar com Google
+      </button>
+    </div>
+    
     
 
-   <button type="button" id="google-login" class="btn  w-100 d-flex align-items-center justify-content-center gap-2 py-2">
-   <img src="img/google-logo.png" alt="Google Logo" width="40">
-    Continuar com Google
-   </button>
+    <!--Cadastro (Segundo formulário)-->
+    <div class="tab-pane fade" id="cadastro-pane" role="tabpanel">
+    <div id="form-cadastro">
+    <div class="mb-3">
+      <input type="text" id="register-name" class="form-control" placeholder="Nome e Sobrenome" required>
+    </div>
+
+    <div class="mb-3">
+    <input type="email" id="register-email" class="form-control" placeholder="E-mail" required>
+    </div>
+
+    <div class="mb-3">
+    <input type="password" id="register-password" class="form-control" placeholder="Senha (mín. 6 caracteres)" required>
+    </div>
+    
+    <div class="mb-4">
+    <input type="password" id="register-confirm-password" class="form-control" placeholder="Confirmar Senha" required>
+    </div>
+
+    <button onclick="registerEmail()" class="btn-cadastro w-100 py-2 mb-3">
+    Criar Conta
+    </button>
+    </div> <!--fim form-cadastro-->
+    </div>
+    </div>
+   
 
     
 </div> <!-- fim card-body -->
