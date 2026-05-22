@@ -1,4 +1,4 @@
-// autenticação do login JS - Firebase
+// autenticação do login JS google - Firebase
 // O jeito moderno (Modular - Versão 10+)
 // O que está dentro das chaves { } são as funções específicas que você "puxa" da biblioteca
 import { 
@@ -34,6 +34,8 @@ document.querySelector('#google-login').addEventListener('click', () => {
     alert("Não foi possível conectar com o Google. Tente novamente em instantes.");
 });
 });
+
+// autenticação do login JS email e senha - Firebase
 
 createUserWithEmailAndPassword(auth, email, senha)
     .then((userCredential) => {
