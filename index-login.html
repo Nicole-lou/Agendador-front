@@ -41,6 +41,15 @@
     <div class="mb-3">
       <input type="password" class="form-control" id="password" placeholder="Senha">
     </div>
+
+    <!-- Checkbox para mostrar senha -->
+    <div class="form-check mb-3 text-start">
+  <input class="form-check-input" type="checkbox" id="show-login-pass">
+  <label class="form-check-label small text-muted" for="show-login-pass">
+    Mostrar senha
+  </label>
+</div>
+
     <button onclick="loginEmail()" class="btn-entrar w-100 py-2 mb-3">
       Entrar
     </button>
@@ -76,10 +85,15 @@
     <div class="mb-4">
     <input type="password" id="register-confirm-password" class="form-control" placeholder="Confirmar Senha" required>
     </div>
+   <!-- Checkbox para mostrar senha -->
+    <div class="form-check mb-3 text-start">
+  <input class="form-check-input" type="checkbox" id="show-register-pass">
+  <label class="form-check-label small text-muted" for="show-register-pass">
+    Mostrar senhas
+  </label>
+ </div>
 
-    <button onclick="registerEmail()" class="btn-cadastro w-100 py-2 mb-3">
-    Criar Conta
-    </button>
+    <button type="button" class="btn-cadastro w-100 py-2 mb-3"> Criar Conta </button>
     </div> <!--fim form-cadastro-->
     </div>
     </div>

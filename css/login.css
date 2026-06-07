@@ -61,6 +61,9 @@ font-family: 'Raleway', sans-serif;
  
 }
 
-
+.form-check-input:checked {
+    background-color: var(--gold-dark);
+    border-color: var(--gold-dark);
+}
 
 
