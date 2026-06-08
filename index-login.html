@@ -33,80 +33,62 @@
    <!-- Formulário de Login -->
   <div class="tab-content" id="authTabsContent">
 
-    <div class="tab-pane fade show active" id="login-pane" role="tabpanel">
-   <div id="form-login">
-    <div class="mb-3">
-      <input type="email" class="form-control" id="email" placeholder="Email">
-    </div>
-    <div class="mb-3">
-      <input type="password" class="form-control" id="password" placeholder="Senha">
-    </div>
-
-    <!-- Checkbox para mostrar senha -->
-    <div class="form-check mb-3 text-start">
-  <input class="form-check-input" type="checkbox" id="show-login-pass">
-  <label class="form-check-label small text-muted" for="show-login-pass">
-    Mostrar senha
-  </label>
-</div>
-
-    <button onclick="loginEmail()" class="btn-entrar w-100 py-2 mb-3">
-      Entrar
-    </button>
-   </div> <!-- fim form-login -->
-  
-
-   <div class="d-flex align-items-center my-4">
-        <hr class="flex-grow-1"><span class="mx-2 text-muted small">ou</span><hr class="flex-grow-1">
+  <div class="tab-pane fade show active" id="login-pane" role="tabpanel">
+    <form id="form-login">
+      <div class="mb-3">
+        <input type="email" class="form-control" id="email" placeholder="Email" required autocomplete="username">
       </div>
-      <button type="button" id="google-login" class="btn-google  w-100 d-flex align-items-center justify-content-center gap-2 py-2">
-        <img src="img/google-logo.png"  alt="Google Logo" width="40">
-        Continuar com Google
+      <div class="mb-3">
+        <input type="password" class="form-control" id="password" placeholder="Senha" required autocomplete="current-password">
+      </div>
+      
+      <div class="form-check mb-3 text-start">
+        <input class="form-check-input" type="checkbox" id="show-login-pass">
+        <label class="form-check-label small text-muted" for="show-login-pass">Mostrar senha</label>
+      </div>
+
+      <button type="submit" class="btn-entrar w-100 py-2 mb-3">
+        Entrar
       </button>
+    </form> <div class="d-flex align-items-center my-4">
+      <hr class="flex-grow-1"><span class="mx-2 text-muted small">ou</span><hr class="flex-grow-1">
     </div>
-    
-    
-
-    <!--Cadastro (Segundo formulário)-->
-    <div class="tab-pane fade" id="cadastro-pane" role="tabpanel">
-    <div id="form-cadastro">
-    <div class="mb-3">
-      <input type="text" id="register-name" class="form-control" placeholder="Nome e Sobrenome" required>
-    </div>
-
-    <div class="mb-3">
-    <input type="email" id="register-email" class="form-control" placeholder="E-mail" required>
-    </div>
-
-    <div class="mb-3">
-    <input type="password" id="register-password" class="form-control" placeholder="Senha (mín. 6 caracteres)" required>
-    </div>
-    
-    <div class="mb-4">
-    <input type="password" id="register-confirm-password" class="form-control" placeholder="Confirmar Senha" required>
-    </div>
-   <!-- Checkbox para mostrar senha -->
-    <div class="form-check mb-3 text-start">
-  <input class="form-check-input" type="checkbox" id="show-register-pass">
-  <label class="form-check-label small text-muted" for="show-register-pass">
-    Mostrar senhas
-  </label>
- </div>
-
-    <button type="button" class="btn-cadastro w-100 py-2 mb-3"> Criar Conta </button>
-    </div> <!--fim form-cadastro-->
-    </div>
-    </div>
-   
-
-    
-</div> <!-- fim card-body -->
-</div> <!-- fim card -->
-</div> <!-- fim div login-->
+    <button type="button" id="google-login" class="btn-google w-100 d-flex align-items-center justify-content-center gap-2 py-2">
+      <img src="img/google-logo.png" alt="Google Logo" width="40">
+      Continuar com Google
+    </button>
+  </div>
 
 
+  <div class="tab-pane fade" id="cadastro-pane" role="tabpanel">
+    <form id="form-cadastro">
+      <div class="mb-3">
+        <input type="text" id="register-name" class="form-control" placeholder="Nome e Sobrenome" required>
+      </div>
 
+      <div class="mb-3">
+        <input type="email" id="register-email" class="form-control" placeholder="E-mail" required autocomplete="username">
+      </div>
 
+      <div class="mb-3">
+        <input type="password" id="register-password" class="form-control" placeholder="Senha (mín. 6 caracteres)" required autocomplete="new-password">
+      </div>
+      
+      <div class="mb-4">
+        <input type="password" id="register-confirm-password" class="form-control" placeholder="Confirmar Senha" required autocomplete="new-password">
+      </div>
+
+      <div class="form-check mb-3 text-start">
+        <input class="form-check-input" type="checkbox" id="show-register-pass">
+        <label class="form-check-label small text-muted" for="show-register-pass">Mostrar senhas</label>
+      </div>
+
+      <button type="submit" class="btn-cadastro w-100 py-2 mb-3">
+        Criar Conta
+      </button>
+    </form> </div>
+
+</div> 
 
 <script type ="module" src="js/firebase-config.js"></script>
 <script type="module" src="js/login.js"></script>

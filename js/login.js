@@ -38,12 +38,14 @@ document.querySelector('#google-login').addEventListener('click', () => {
 
 // autenticação do login JS email e senha - Firebase
 
-const btnCriarConta = document.querySelector('.btn-cadastro');
+const formCadastro = document.querySelector('#form-cadastro');
+formCadastro.addEventListener('submit', (e) => {
+    e.preventDefault();
+
 // Valores dos inputs na hora do clique de cadastro
-btnCriarConta.addEventListener('click', () => {
-    const name = document.querySelector('#register-name').value;
-    const email = document.querySelector('#register-email').value;
-    const senha = document.querySelector('#register-password').value;
+    const name = document.querySelector('#register-name').value.trim();
+    const email = document.querySelector('#register-email').value.trim();
+    const password = document.querySelector('#register-password').value;
     const confirmPassword = document.querySelector('#register-confirm-password').value;
 
     // Validação simples: verificar se as senhas coincidem
@@ -63,33 +65,31 @@ btnCriarConta.addEventListener('click', () => {
     const user = userCredential.user;
     console.log("Conta criada com sucesso:", user.uid);
     alert(`Conta criada com sucesso! Bem-vinda, ${name}!`);
+    formCadastro.reset(); // Limpa o formulário após o cadastro bem-sucedido
 
-    document.querySelector('#register-name').value = '';
-    document.querySelector('#register-email').value = '';
-    document.querySelector('#register-password').value = '';
-    document.querySelector('#register-confirm-password').value = '';
 })
 
 .catch((error) => {
-    console.error("Erro ao cadastrar:", error.code);
+            console.error("Erro técnico no cadastro:", error.code);
+            if (error.code === 'auth/email-already-in-use') {
+                alert("Este e-mail já está cadastrado.");
+            } else if (error.code === 'auth/invalid-email') {
+                alert("O formato do e-mail é inválido.");
+            } else {
+                alert("Erro ao criar conta: " + error.message);
+            }
+        });
 });
 
-// Tratamento de erros específicos para melhorar a experiência do usuário
-if(error.code === 'auth/email-already-in-use') {
-    alert("Este e-mail já está em uso.")
-    } else if (error.code === 'auth/invalid-email') {
-        alert("O e-mail fornecido é inválido.");
-    } else {
-        alert("Erro ao criar a conta: " + error.message);
-    }
-});
+
+
 
 // validação para mostrar ou esconder a senha no formulário de cadastro
 const checkLoginPass = document.querySelector('#show-login-pass');
-const inputLoginPass = document.querySelector('#register-password');
+const inputLoginPass = document.querySelector('#password');
 
 checkLoginPass.addEventListener('change', () => {
-    inputLogin.Pas.type = checkLoginPass.checked ? 'text' : 'password';
+    inputLoginPass.type = checkLoginPass.checked ? 'text' : 'password';
 });
 
 const checkRegisterPass = document.querySelector('#show-register-pass');
