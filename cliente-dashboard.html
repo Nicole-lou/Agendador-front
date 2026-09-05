@@ -11,7 +11,123 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+
+    <nav>
+        <ul>
+                <div class="d-flex align-items-center gap-3">
+                    <span id="user-info" class="fw-medium"></span>
+                    <button onclick="logout()" class="btn btn-sm btn-outline-danger btn-sair">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                </div> 
+        </ul>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0 p-4">
+                    <h1 class="gold-text text-center fw-bold mb-4">Bem-vindo(a) ao Agendamento</h1>
+                    <p class="text-center text-muted mb-5">Escolha o serviço, profissional, data e horário para agendar seu atendimento.</p>
+
+      <div class="card-body">
+    <div class="row g-4">
+    <div class="col-md-6">
+    <label class="form-label fw-medium titulo-label">Serviço</label>
+    <select id="service" class="form-select select-servico">
+    <option value="Corte Feminino">Corte Feminino - R$ 120</option>
+    <option value="Corte Masculino">Corte Masculino - R$ 80</option>
+    <option value="Coloração">Coloração - R$ 250</option>
+    <option value="Manicure">Manicure - R$ 65</option>
+    <option value="Pedicure">Pedicure - R$ 75</option>
+ <option value="Escova">Escova - R$ 90</option>
+</select>
+ </div>
+
+  <div class="card-body">
+    <div class="row g-4">
+    <div class="col-md-6">
+    <label class="form-label fw-medium titulo-label">Profissional</label>
+    <select id="professional" class="form-select select-servico">
+    <option value="Profissional 1">Profissional 1 </option>
+    <option value="Profissional 2">Profissional 2 </option>
+    <option value="Profissional 3">Profissional 3 </option>
+    <option value="Profissional 4">Profissional 4 </option>
+    <option value="Pedicure">Pedicure </option>
+ <option value="Escova">Escova </option>
+</select>
+ </div>
+
+ 
+
+ <div class="col-md-6">
+        <label class="form-label fw-medium data-label">Data</label>
+        <input type="date" id="date" class="form-control select-data" value="2026-05-25">
+        </div>
+                                
+        <div class="col-md-6">
+        <label class="form-label fw-medium hora-label">Horário</label>
+       <select id="time" class="form-select select-hora">
+        <option value="09:00">09:00</option>
+        <option value="10:00">10:00</option>
+        <option value="11:00">11:00</option>
+        <option value="14:00">14:00</option>
+        <option value="15:00">15:00</option>
+        <option value="16:00">16:00</option>
+        <option value="17:00">17:00</option>
+        </select>
+        </div>
+
+        <!-- Dados do Cliente -->
+         <div class="mb-3">
+    <label for="cliente" class="form-label fw-semibold cliente-label">Seu Nome Completo </label>
+    <input type="text" class="form-control nome-cliente" id="cliente" placeholder="Ex: Maria Silva" required>
+  </div>
+
+  <div class="mb-4">
+    <label for="telefoneCliente" class="form-label fw-semibold telefone-label">WhatsApp / Telefone </label>
+    <input type="tel" class="form-control telefone-cliente" id="telefoneCliente" placeholder="Ex: 21999998888" required>
+  </div>
+                                
+     <div class="col-12">
+     <button onclick="bookAppointment()" class="btn btn-gold w-100 py-3 fs-5">
+    <i class="fas fa-calendar-check"></i> Confirmar Agendamento
+    </button>
+    </div>
+    </div>
+    </div>
+    </div>
+                    
+                    <!-- Meus Agendamentos -->
+   <div class="mt-5">
+    <h4 class="mb-3"><i class="fas fa-list-check"></i> Meus Agendamentos</h4>
+    <div id="user-appointments" class="row g-3">
+    <!-- Preenchido via JS -->
+    </div>
+    </div>
+    </div>
+    </div>
+   </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMAÇÃO -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle fa-5x gold-text"></i>
+                    </div>
+                    <h3 class="fw-bold">Agendamento Confirmado!</h3>
+                    <p id="modal-details" class="text-muted"></p>
+                    <button onclick="closeModal()" class="btn btn-gold px-5 mt-3">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cliente.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
 </body>
 </html>
