@@ -11,6 +11,10 @@ import {
 // Importamos a configuração que vem do outro arquivo
 import { auth } from './firebase-config.js';
 
+import { updateProfile } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+
+
 
 document.querySelector('#google-login').addEventListener('click', () => {
     const provider = new GoogleAuthProvider(); // Criamos o "configurador" do Google
@@ -20,7 +24,7 @@ document.querySelector('#google-login').addEventListener('click', () => {
         .then((result) => {
             // O que acontece quando o usuário termina de logar na janelinha
             console.log("Usuário logado:", result.user);
-            alert(`Bem-vindo, ${result.user.displayName}!`);
+           window.location.href = 'cliente-dashboard.html';
         })
         .catch((error) => {
     // Manter isso para  conseguir debugar no F12 se a internet cair ou o Google falhar
@@ -60,14 +64,16 @@ formCadastro.addEventListener('submit', (e) => {
     }
 
     // chamada do firebase para criar a conta, usando os valores dos inputs
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-    const user = userCredential.user;
-    console.log("Conta criada com sucesso:", user.uid);
-    alert(`Conta criada com sucesso! Bem-vinda, ${name}!`);
-    formCadastro.reset(); // Limpa o formulário após o cadastro bem-sucedido
+   createUserWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
+        const user = userCredential.user;
+        await updateProfile(user, { displayName: name });
+        console.log("Conta criada com sucesso:", user.uid);
+        window.location.href = 'cliente-dashboard.html';
+        formCadastro.reset();
+    })
 
-})
+
 
 .catch((error) => {
             console.error("Erro técnico no cadastro:", error.code);
