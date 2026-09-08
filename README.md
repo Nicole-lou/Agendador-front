@@ -1,7 +1,7 @@
 # Agendador-front
 
 ✨ Agenda Dourada - Interface Web (Front-end)
-
+Em andamento
 Interface web moderna e responsiva do sistema **Agenda Dourada**, desenvolvida com **HTML5, CSS3, JavaScript puro (ES6+)** e **Bootstrap 5**. O sistema conta com autenticação via **Firebase** e agendamento dinâmico integrado à API Spring Boot.
 
 ---
