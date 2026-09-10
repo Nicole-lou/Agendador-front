@@ -141,6 +141,6 @@ window.closeModal = function () {
 
 window.logout = function () {
     signOut(auth)
-        .then(() => window.location.href = 'login.html')
+        .then(() => window.location.href = 'index-login.html')
         .catch((error) => console.error('Erro ao sair:', error));
 };
