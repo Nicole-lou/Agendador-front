@@ -1,81 +1,111 @@
-// autenticação do login JS google - Firebase
-// O jeito moderno (Modular - Versão 10+)
-// O que está dentro das chaves { } são as funções específicas que você "puxa" da biblioteca
 import { 
     signInWithPopup, 
     GoogleAuthProvider, 
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
+    updateProfile,
+    sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 
-// Importamos a configuração que vem do outro arquivo
 import { auth } from './firebase-config.js';
 
-import { updateProfile } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
-
-
-
-
+// ---------- LOGIN COM GOOGLE ----------
 document.querySelector('#google-login').addEventListener('click', () => {
-    const provider = new GoogleAuthProvider(); // Criamos o "configurador" do Google
+    const provider = new GoogleAuthProvider();
 
-    // Chamamos a função passando a nossa 'auth' e o 'provider'
     signInWithPopup(auth, provider)
         .then((result) => {
-            // O que acontece quando o usuário termina de logar na janelinha
             console.log("Usuário logado:", result.user);
-           window.location.href = 'cliente-dashboard.html';
+            window.location.href = 'cliente-dashboard.html';
         })
         .catch((error) => {
-    // Manter isso para  conseguir debugar no F12 se a internet cair ou o Google falhar
-    console.error("Erro na autenticação com Google:", error);
+            console.error("Erro na autenticação com Google:", error);
+            if (error.code === 'auth/popup-closed-by-user') {
+                return;
+            }
+            alert("Não foi possível conectar com o Google. Tente novamente em instantes.");
+        });
+});
 
-    // Se o usuário simplesmente fechou a janelinha do Google sem escolher um e-mail
-    if (error.code === 'auth/popup-closed-by-user') {
-        return; // Não faz nada, o usuário só desistiu de logar
+// ---------- LOGIN COM EMAIL E SENHA ----------
+const formLogin = document.querySelector('#form-login');
+formLogin.addEventListener('submit', (e) => {
+    e.preventDefault(); // ESSENCIAL: sem isso a página recarrega
+
+    const email = document.querySelector('#email').value.trim();
+    const password = document.querySelector('#password').value;
+
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            console.log("Login realizado:", userCredential.user.uid);
+            window.location.href = 'cliente-dashboard.html';
+        })
+        .catch((error) => {
+            console.error("Erro no login:", error.code);
+            if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                alert("E-mail ou senha inválidos.");
+            } else {
+                alert("Erro ao entrar: " + error.message);
+            }
+        });
+});
+
+// ---------- ESQUECI MINHA SENHA ----------
+document.querySelector('#forgot-password').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const email = document.querySelector('#email').value.trim();
+
+    if (!email) {
+        alert("Digite seu e-mail no campo acima antes de clicar em 'Esqueci minha senha'.");
+        return;
     }
 
-    // Para qualquer outro erro real (ex: queda de conexão)
-    alert("Não foi possível conectar com o Google. Tente novamente em instantes.");
-});
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            alert(`Enviamos um link de redefinição de senha para ${email}. Verifique sua caixa de entrada (e o spam).`);
+        })
+        .catch((error) => {
+            console.error("Erro ao enviar redefinição:", error.code);
+            if (error.code === 'auth/user-not-found') {
+                alert("Não encontramos uma conta com esse e-mail.");
+            } else if (error.code === 'auth/invalid-email') {
+                alert("Digite um e-mail válido.");
+            } else {
+                alert("Erro ao enviar e-mail de redefinição: " + error.message);
+            }
+        });
 });
 
-// autenticação do login JS email e senha - Firebase
-
+// ---------- CADASTRO ----------
 const formCadastro = document.querySelector('#form-cadastro');
 formCadastro.addEventListener('submit', (e) => {
     e.preventDefault();
 
-// Valores dos inputs na hora do clique de cadastro
     const name = document.querySelector('#register-name').value.trim();
     const email = document.querySelector('#register-email').value.trim();
     const password = document.querySelector('#register-password').value;
     const confirmPassword = document.querySelector('#register-confirm-password').value;
 
-    // Validação simples: verificar se as senhas coincidem
     if (password !== confirmPassword) {
         alert("As senhas devem ser iguais!");
-        return; // Para a execução se as senhas não coincidirem
+        return;
     }
-    // Validação de caracteres de senha
-    if(password.length < 6) {
+
+    if (password.length < 6) {
         alert("A senha deve conter no mínimo 6 caracteres!");
-        return; // Para a execução se a senha for muito curta
+        return;
     }
 
-    // chamada do firebase para criar a conta, usando os valores dos inputs
-   createUserWithEmailAndPassword(auth, email, password)
-    .then(async (userCredential) => {
-        const user = userCredential.user;
-        await updateProfile(user, { displayName: name });
-        console.log("Conta criada com sucesso:", user.uid);
-        window.location.href = 'cliente-dashboard.html';
-        formCadastro.reset();
-    })
-
-
-
-.catch((error) => {
+    createUserWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
+            const user = userCredential.user;
+            await updateProfile(user, { displayName: name });
+            console.log("Conta criada com sucesso:", user.uid);
+            formCadastro.reset();
+            window.location.href = 'cliente-dashboard.html';
+        })
+        .catch((error) => {
             console.error("Erro técnico no cadastro:", error.code);
             if (error.code === 'auth/email-already-in-use') {
                 alert("Este e-mail já está cadastrado.");
@@ -87,10 +117,7 @@ formCadastro.addEventListener('submit', (e) => {
         });
 });
 
-
-
-
-// validação para mostrar ou esconder a senha no formulário de cadastro
+// ---------- MOSTRAR/ESCONDER SENHA ----------
 const checkLoginPass = document.querySelector('#show-login-pass');
 const inputLoginPass = document.querySelector('#password');
 
@@ -107,12 +134,3 @@ checkRegisterPass.addEventListener('change', () => {
     inputRegisterPass.type = tipo;
     inputRegisterConfirm.type = tipo;
 });
-
-
-
-
-
-
-
-
-

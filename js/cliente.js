@@ -14,7 +14,7 @@ const clienteInput = document.querySelector('#cliente');
 // Verifica se está logado assim que a página carrega
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
-        window.location.href = 'login.html';
+        window.location.href = 'index-login.html';
         return;
     }
 

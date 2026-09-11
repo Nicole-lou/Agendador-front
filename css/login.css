@@ -66,4 +66,8 @@ font-family: 'Raleway', sans-serif;
     border-color: var(--gold-dark);
 }
 
-
+#forgot-password {
+    color: var(--gold-dark);
+    text-decoration: none;
+  
+}
