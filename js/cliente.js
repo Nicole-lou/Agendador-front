@@ -43,10 +43,8 @@ function preencherNomeCliente(user) {
 }
 
 async function carregarAgendamentos(user) {
-    const nome = user.displayName || user.email;
-
     try {
-        const response = await fetch(`${API_URL}/cliente/${encodeURIComponent(nome)}`, {
+        const response = await fetch(`${API_URL}/meus`, {
             headers: { 'Authorization': `Bearer ${idToken}` }
         });
 
