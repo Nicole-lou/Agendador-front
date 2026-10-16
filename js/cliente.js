@@ -11,6 +11,19 @@ const userPhoto = document.querySelector('#user-photo');
 const appointmentsContainer = document.querySelector('#user-appointments');
 const clienteInput = document.querySelector('#cliente');
 
+// Função para obter a data atual no formato YYYY-MM-DD
+function hojeLocal() {
+    const d = new Date();
+    const ano = d.getFullYear();
+    const mes = String(d.getMonth() + 1).padStart(2, '0');
+    const dia = String(d.getDate()).padStart(2, '0');
+    return `${ano}-${mes}-${dia}`;
+}
+
+const dateInput = document.querySelector('#date');
+dateInput.min = hojeLocal();
+dateInput.value = hojeLocal();
+
 // Verifica se está logado assim que a página carrega
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -102,6 +115,11 @@ window.bookAppointment = async function () {
 
     const dataHoraAgendamento = `${data}T${hora}:00`;
     const payload = { servico, profissional, dataHoraAgendamento, cliente, telefoneCliente };
+
+        if (new Date(dataHoraAgendamento) < new Date()) {
+        alert('Escolha uma data e horário futuros.');
+        return;
+    }
 
     try {
         const response = await fetch(API_URL, {
